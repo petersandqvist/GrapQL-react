@@ -1,3 +1,11 @@
+# Rick and Morty API, npm install for node modules, then npm run start
+
+## Some things that is missing:
+  Transparency when you click a search result\
+  I realised there is not enough Search results to list 20 results.\
+  I am sure there are room for improvements
+  
+  
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
