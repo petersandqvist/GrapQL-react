@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { GET_CHARACTER_BY_NAME } from '../GraphQL/useCharacterNames';
+import { GET_CHARACTER_BY_NAME } from '../GraphQL/Querys/useCharacterNames';
 import { Link } from 'react-router-dom';
 
 export const Search = () => {
