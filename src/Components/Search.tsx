@@ -22,16 +22,6 @@ export const Search = () => {
     refetch();
   };
 
-  const handleKeyPress = (e: { keyCode: number }) => {
-    if (e.keyCode === 13) {
-    }
-  };
-
-  const resetInput = () => {
-    setName('');
-    getCharactersByName();
-  };
-
   return (
     <div className='form-wrapper'>
       <form onChange={() => getCharactersByName({ variables: { name: name } })}>
@@ -42,10 +32,8 @@ export const Search = () => {
             className='search-input'
             value={name}
             onChange={onChange}
-            onKeyDown={handleKeyPress}
             placeholder=''
           ></input>
-          <button onClick={() => resetInput()}>Clear</button>
         </div>
       </form>
       {loading && <div className='loading'>loading...</div>}
