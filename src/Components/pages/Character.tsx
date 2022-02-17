@@ -18,7 +18,7 @@ export const Character = () => {
         <span>{data.character.gender}</span>
         <div className='character-episode'>
           {data.character.episode.map(
-            (episode: { name: React.ReactNode; episode: React.ReactNode }) => {
+            (episode: { name: string; episode: string }) => {
               return (
                 <div>
                   {episode.name} - <b>{episode.episode}</b>

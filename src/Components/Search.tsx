@@ -16,7 +16,7 @@ export const Search = () => {
     }
   );
 
-  const onChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
     //not sure if refetch is correct here
     refetch();
@@ -41,11 +41,7 @@ export const Search = () => {
       <ul>
         {data &&
           data?.characters?.results.map(
-            (character: {
-              image: string | undefined;
-              id: string | undefined;
-              name: React.ReactNode;
-            }) => {
+            (character: { image: string; id: string; name: string }) => {
               return (
                 <li key={character.id}>
                   <Link to={`/${character.id}`}>
