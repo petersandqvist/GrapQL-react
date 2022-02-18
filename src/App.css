@@ -61,3 +61,7 @@ button {
     align-items: center;
     font-size: 30px;
 }
+
+.transparent {
+    opacity: 0.5;
+}

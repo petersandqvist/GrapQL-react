@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 export const Search = () => {
   const [name, setName] = useState('');
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
-  //when useLazyQuery is called it returns a function that can trigger the query manually, for exampel on an event like a button click
   const [getCharactersByName, { error, data, loading, refetch }] = useLazyQuery(
     GET_CHARACTER_BY_NAME,
     {
@@ -20,6 +20,14 @@ export const Search = () => {
     setName(e.target.value);
     //not sure if refetch is correct here
     refetch();
+  };
+
+  const handleClickOnCards = (id: string) => {
+    const newSelectedItems = [...selectedItems];
+    !newSelectedItems.includes(id)
+      ? newSelectedItems.push(id)
+      : newSelectedItems.splice(newSelectedItems.indexOf(id));
+    setSelectedItems(newSelectedItems);
   };
 
   return (
@@ -42,10 +50,17 @@ export const Search = () => {
         {data &&
           data?.characters?.results.map(
             (character: { image: string; id: string; name: string }) => {
+              const isNotInTheList =
+                selectedItems.indexOf(character.id) === -1 ? '' : 'transparent';
               return (
                 <li key={character.id}>
+                  <img
+                    className={isNotInTheList}
+                    onClick={() => handleClickOnCards(character.id)}
+                    src={character.image}
+                    alt='RickAndMorty'
+                  />
                   <Link to={`/${character.id}`}>
-                    <img src={character.image} alt='RickAndMorty' />
                     <h2>{character.name}</h2>
                   </Link>
                 </li>

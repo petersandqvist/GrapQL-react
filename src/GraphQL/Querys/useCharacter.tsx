@@ -1,6 +1,23 @@
 import { gql, useQuery } from '@apollo/client';
 
-//in order for the Query to work we specify it with a bang ! that makes ID necesary.
+interface IData {
+  character: ICharacter;
+}
+
+interface ICharacter {
+  id: string;
+  name: string;
+  gender: string;
+  image: string;
+  episode: Array<IEpisode>;
+}
+
+interface IEpisode {
+  episode: string;
+  name: string;
+  id: string;
+}
+
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
@@ -11,21 +28,19 @@ const GET_CHARACTER = gql`
       episode {
         name
         episode
+        id
       }
     }
   }
 `;
 
 export const useCharacter = (id: string | undefined) => {
-  const { error, data, loading } = useQuery(GET_CHARACTER, {
+  const { error, data, loading } = useQuery<IData>(GET_CHARACTER, {
     variables: {
       id,
     },
   });
 
-  return {
-    data,
-    error,
-    loading,
-  };
+  const result = { error: error, character: data?.character, loading: loading };
+  return result;
 };
