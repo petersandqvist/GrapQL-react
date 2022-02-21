@@ -27,6 +27,13 @@
     align-items: center;
 }
 
+button {
+    background: lightcoral;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    margin-bottom: 1rem;
+}
 
 ul {
     display: grid;
@@ -44,14 +51,6 @@ ul {
 
 li {
     list-style: none;
-    margin-bottom: 1rem;
-}
-
-button {
-    background: lightcoral;
-    border: none;
-    padding: 10px 20px;
-    color: white;
     margin-bottom: 1rem;
 }
 

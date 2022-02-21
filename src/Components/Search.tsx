@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { useCharacters } from '../GraphQL/Querys/useCharacters';
 import { CharacterList } from './CharacterList';
 
-export const Search = () => {
+interface IProps {
+  selectedItems: string[];
+  setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export const Search: FC<IProps> = ({ selectedItems, setSelectedItems }) => {
   const [name, setName] = useState('');
-  const {
-    error,
-    results,
-    loading,
-    refetch,
-    getCharactersByName,
-  } = useCharacters(name);
+  const { error, results, loading, getCharactersByName } = useCharacters(name);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-    //not sure if refetch is correct here
-    refetch();
+  };
+
+  const handleResetState = (event: { preventDefault: () => void }) => {
+    setSelectedItems(selectedItems);
   };
 
   return (
@@ -30,15 +31,19 @@ export const Search = () => {
             onChange={onChange}
             placeholder=''
           ></input>
+          <button className='reset-state-button' onClick={handleResetState}>
+            Clear search
+          </button>
         </div>
       </form>
       {loading && <div className='loading'>loading...</div>}
       {error && <div>Something went wrong</div>}
       <ul>
-        {results?.map((element) => {
-          const { name, id, image } = element;
-          return <CharacterList name={name} id={id} image={image} key={id} />;
-        })}
+        {results?.length &&
+          results?.map((element) => {
+            const { name, id, image } = element;
+            return <CharacterList name={name} id={id} image={image} key={id} />;
+          })}
       </ul>
     </div>
   );

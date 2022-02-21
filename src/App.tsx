@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
-import { Character } from './Components/pages/Character';
-import { Search } from './Components/Search';
+import { Character } from './Components/Character';
+import { SearchPage } from './Components/SearchPage';
 
 const App = () => {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<Search />} />
+        <Route path='/' element={<SearchPage />} />
         <Route path='/:id' element={<Character />} />
       </Routes>
     </div>

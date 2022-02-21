@@ -1,7 +1,7 @@
 import React from 'react';
-import { useCharacter } from '../../GraphQL/Querys/useCharacter';
+import { useCharacter } from '../GraphQL/Querys/useCharacter';
 import { useParams } from 'react-router';
-import { Episodes } from '../Episodes';
+import { Episodes } from './Episodes';
 
 export const Character = () => {
   const { id } = useParams();

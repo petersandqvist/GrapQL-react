@@ -27,19 +27,19 @@ const GET_CHARACTER_BY_NAME = gql`
 `;
 
 export const useCharacters = (name: string | undefined) => {
-  const [getCharactersByName, { error, data, loading, refetch }] = useLazyQuery<
-    IData
-  >(GET_CHARACTER_BY_NAME, {
-    variables: {
-      name,
-    },
-  });
+  const [getCharactersByName, { error, data, loading }] = useLazyQuery<IData>(
+    GET_CHARACTER_BY_NAME,
+    {
+      variables: {
+        name,
+      },
+    }
+  );
   if (!data) {
     return {
       error,
       results: undefined,
       loading,
-      refetch,
       getCharactersByName,
     };
   }
@@ -49,7 +49,6 @@ export const useCharacters = (name: string | undefined) => {
     error,
     results,
     loading,
-    refetch,
     getCharactersByName,
   };
   return result;
