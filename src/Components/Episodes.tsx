@@ -8,11 +8,7 @@ interface IProps {
 export const Episodes: FC<IProps> = ({ name, episode }) => {
   return (
     <div>
-      return (
-      <div>
-        {name} - <b>{episode}</b>
-      </div>
-      );
+      {name} - <b>{episode}</b>
     </div>
   );
 };

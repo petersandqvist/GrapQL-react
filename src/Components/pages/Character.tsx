@@ -19,11 +19,8 @@ export const Character = () => {
         <span>{character?.gender}</span>
         <div className='character-episode'>
           {character?.episode.map((element) => {
-            <Episodes
-              name={element.name}
-              episode={element.episode}
-              key={element.id}
-            />;
+            const { name, episode, id } = element;
+            return <Episodes name={name} episode={episode} key={id} />;
           })}
         </div>
       </div>
