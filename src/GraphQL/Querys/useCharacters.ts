@@ -44,7 +44,7 @@ export const useCharacters = (name: string | undefined) => {
     };
   }
   const { characters } = data;
-  const { results } = characters;
+  const { results } = characters || {};
   const result = {
     error,
     results,
